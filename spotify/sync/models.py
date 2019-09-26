@@ -17,7 +17,7 @@ class SyncMeta(type):
         if base_name in ("HTTPClient", "HTTPUserClient"):
 
             def __init__(self, *args, **kwargs):
-                super().__init__(*args, **kwargs)
+                super(type(self), self).__init__(*args, **kwargs)
                 self.__client_thread__ = kwargs[
                     "loop"
                 ]._thread  # pylint: disable=protected-access

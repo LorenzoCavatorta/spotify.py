@@ -78,7 +78,7 @@ APP = flask.Flask(__name__)
 APP.config.from_mapping({'spotify_client': SPOTIFY_CLIENT})
 
 REDIRECT_URI: str = 'http://localhost:8888/spotify/callback'
-OAUTH2: spotify.OAuth2 = spotify.OAuth2(SPOTIFY_CLIENT.id, REDIRECT_URI, scope='user-modify-playback-state,user-read-currently-playing,user-read-playback-state')
+OAUTH2: spotify.OAuth2 = spotify.OAuth2(SPOTIFY_CLIENT.id, REDIRECT_URI, scopes=['user-modify-playback-state', 'user-read-currently-playing', 'user-read-playback-state'])
 
 
 @APP.route('/spotify/callback')
