@@ -1080,8 +1080,9 @@ class HTTPClient:
         route = self.route("PUT", "/me/player/play")
         payload = {"position_ms": position_ms}
 
+
         if isinstance(context_uri, str):
-            payload["context_uri"] = {"context_uri": context_uri}
+            payload["context_uri"] = context_uri
 
         elif hasattr(context_uri, "__iter__"):
             payload["uris"] = {"uris": list(*context_uri)}
@@ -1112,7 +1113,7 @@ class HTTPClient:
                         f"`offset` should be either a string or an integer, got {type(offset)}"
                     )
 
-                payload["offset"] = offset
+                payload["offset"] = _offset
             else:
                 raise ValueError(
                     "not able to set `offset` as either `context_uri` was not a list or it was a playlist or album uri."
